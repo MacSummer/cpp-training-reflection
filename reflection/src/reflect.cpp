@@ -19,8 +19,10 @@ TypeDescriptor *Registry::Find(const std::string &name) {
 }
 
 void Registry::Register(std::unique_ptr<TypeDescriptor> desc) {
-  auto name = desc->name();
-  type_descs_[name] = std::move(desc);
+    if (desc) {
+	    auto name = desc->name();
+	    type_descs_[name] = std::move(desc);
+    }
 }
 
 void Registry::Clear() {
